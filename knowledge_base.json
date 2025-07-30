@@ -1,0 +1,140 @@
+{
+    "visas": [
+        {
+            "type": "Permis d'études",
+            "description": "Permis pour étudier dans un établissement désigné au Canada",
+            "eligibility": {
+                "fonds": "Preuve de fonds suffisants (frais de scolarité + 10 000 $/an pour le tuteur + 4 000 $/an pour chaque personne supplémentaire)",
+                "age": "Aucune restriction majeure",
+                "langue": "Niveau de français ou anglais variable selon l'institution",
+                "admission": "Lettre d'acceptation d'un établissement désigné (DLI)"
+            },
+            "documents": [
+                "Lettre d'acceptation du DLI",
+                "Preuve de fonds suffisants",
+                "Passeport valide",
+                "Photos format canadien (35x45 mm)",
+                "Certificat d'acceptation du Québec (CAQ) pour le Québec"
+            ],
+            "processing_time": "12 semaines",
+            "fees": {
+                "permis": "150 $ CAD",
+                "biométrie": "85 $ CAD"
+            }
+        },
+        {
+            "type": "Permis de travail",
+            "description": "Permis pour travailler temporairement au Canada",
+            "categories": [
+                "Permis de travail ouvert (PTE)",
+                "Permis de travail fermé (PTF)"
+            ],
+            "eligibility": {
+                "offre d'emploi": "Doit être valide et provenir d'un employeur canadien",
+                "LMIA": "Requis sauf exemptions (accords internationaux, mobilité francophone)",
+                "experience": "Expérience pertinente dans le domaine",
+                "langue": "Niveau variable selon la profession"
+            },
+            "documents": [
+                "Offre d'emploi signée",
+                "Évaluation d'impact sur le marché du travail (LMIA) si applicable",
+                "CV détaillé",
+                "Preuves de qualifications (diplômes, certifications)",
+                "Preuve de fonds pour la période initiale"
+            ],
+            "processing_time": "16 semaines",
+            "fees": {
+                "permis": "155 $ CAD",
+                "LMIA": "1000 $ CAD (employeur)"
+            }
+        },
+        {
+            "type": "Entrée Express",
+            "description": "Système de sélection des immigrants économiques fédéraux",
+            "programs": [
+                "Programme fédéral des travailleurs qualifiés (FSWP)",
+                "Programme fédéral des métiers spécialisés (FSTP)",
+                "Programme canadien expérience (CEC)"
+            ],
+            "eligibility": {
+                "points": "Doit obtenir au moins 67/100 sur la grille de sélection initiale",
+                "experience": "Au moins 1 an d'expérience professionnelle continue",
+                "langue": "NCLC 7 pour français ou CLB 7 pour anglais",
+                "education": "Diplôme d'études secondaires ou équivalent"
+            },
+            "documents": [
+                "Rapports d'évaluation des diplômes (ECA)",
+                "Résultats de tests linguistiques valides",
+                "Preuves d'expérience professionnelle",
+                "Relevés de notes et diplômes",
+                "Preuve de fonds",
+                "Certificat de police"
+            ],
+            "processing_time": "6 mois",
+            "fees": {
+                "dépôt": "850 $ CAD",
+                "droit permanent": "515 $ CAD"
+            }
+        },
+        {
+            "type": "PVT (Programme Vacances-Travail)",
+            "description": "Programme permettant aux jeunes de voyager et travailler temporairement au Canada",
+            "eligibility": {
+                "age": "Entre 18 et 35 ans (selon le pays d'origine)",
+                "nationalité": "Doit être ressortissant d'un pays partenaire",
+                "fonds": "Preuve de 2 500 $ CAD + billet de retour",
+                "assurance": "Assurance médicale pour toute la durée du séjour"
+            },
+            "documents": [
+                "Passeport valide",
+                "Preuve de fonds",
+                "Assurance voyage",
+                "Billet de retour ou preuve de fonds suffisantes",
+                "Photos format canadien"
+            ],
+            "processing_time": "8 semaines",
+            "fees": {
+                "permis": "150 $ CAD",
+                "biométrie": "85 $ CAD"
+            }
+        }
+    ],
+    "exigences_linguistiques": {
+        "tests_acceptés": {
+            "anglais": ["IELTS", "CELPIP"],
+            "français": ["TEF", "TCF"]
+        },
+        "scores_min": {
+            "Express_Entry": {
+                "IELTS": {"L": 6.0, "S": 6.0, "R": 6.0, "W": 6.0},
+                "TEF": {"L": 249, "S": 310, "R": 207, "W": 310}
+            },
+            "Citoyenneté": {
+                "IELTS": 4.5,
+                "TEF": "B1"
+            },
+            "Permis_études": {
+                "IELTS": 6.0,
+                "TEF": "B2"
+            }
+        },
+        "validity": "2 ans à partir de la date du test"
+    },
+    "biométrie": {
+        "coût": "85 $ CAD",
+        "exemptions": ["< 14 ans", "> 79 ans", "diplomates"],
+        "validity": "10 ans",
+        "centres": ["VFS Global", "Centre de réception des demandes de visa (CRDV)"]
+    },
+    "resources": {
+        "liens_officiels": {
+            "IRCC": "https://www.canada.ca/fr/immigration-refugies-citoyennete.html",
+            "Calculateur CRS": "https://www.cic.gc.ca/francais/immigrer/qualifie/entree-express/entree.asp",
+            "Délais traitement": "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/demandes/check-delais-traitement.html"
+        },
+        "guides": {
+            "Guide_étude": "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/etudier-canada.html",
+            "Guide_travail": "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/travailler-canada.html"
+        }
+    }
+}

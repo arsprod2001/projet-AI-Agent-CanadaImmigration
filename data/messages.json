@@ -1,0 +1,40 @@
+{
+  "CONV_20250730154425783003": [
+    {
+      "id": 1,
+      "content": "SALUT",
+      "is_user": true,
+      "timestamp": "2025-07-30T15:44:25.793973"
+    },
+    {
+      "id": 2,
+      "content": "Bonjour de retour ! Comment puis-je vous aider aujourd'hui ?",
+      "is_user": false,
+      "timestamp": "2025-07-30T15:44:25.793973"
+    },
+    {
+      "id": 3,
+      "content": "Combien coute le visa",
+      "is_user": true,
+      "timestamp": "2025-07-30T15:44:45.475400"
+    },
+    {
+      "id": 4,
+      "content": "Le coût du visa de biométrie est de 85 $ CAD, et sa validité est de 10 ans.",
+      "is_user": false,
+      "timestamp": "2025-07-30T15:44:45.475400"
+    },
+    {
+      "id": 5,
+      "content": "quels sont mes informations du profile",
+      "is_user": true,
+      "timestamp": "2025-07-30T15:45:03.854507"
+    },
+    {
+      "id": 6,
+      "content": "Basé sur les informations fournies, voici les détails de votre profil:\n- Âge: 24 ans\n- Nationalité: Mauritanienne\n- Destination: Ontario\n- Type de profil: visiteur\n- Fonds disponibles: 4905.0 $ CAD\n\nSi vous avez besoin d'informations supplémentaires ou si vous souhaitez explorer des options de visa spécifiques, n'hésitez pas à le demander.",
+      "is_user": false,
+      "timestamp": "2025-07-30T15:45:03.854507"
+    }
+  ]
+}
