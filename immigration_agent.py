@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import json
 import os
 
@@ -8,6 +9,21 @@ with open("knowledge_base.json", "r", encoding="utf-8") as f:
 
 class ImmigrationAgent:
     def __init__(self):
+=======
+# immigration_agent.py
+from knowledge_base import KNOWLEDGE_BASE
+import os
+import openai
+from dotenv import load_dotenv
+
+# Charger la clé API depuis .env
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+
+class ImmigrationAgent:
+    def _init_(self):
+>>>>>>> 36cfcad67a600aa388ed82267ab4afc8e3be9479
         self.knowledge = KNOWLEDGE_BASE
 
     def get_knowledge_context(self):
@@ -157,4 +173,8 @@ class ImmigrationAgent:
                 elif "travail" in visa_type.lower():
                     resources["Guide spécifique"] = self.knowledge["resources"]["guides"]["Guide_travail"]
 
+<<<<<<< HEAD
         return resources
+=======
+        return resources
+>>>>>>> 36cfcad67a600aa388ed82267ab4afc8e3be9479

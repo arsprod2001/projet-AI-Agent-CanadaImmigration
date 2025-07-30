@@ -5,7 +5,11 @@ from models import UserProfile, Conversation
 
 
 class DataManager:
+<<<<<<< HEAD
     def __init__(self):
+=======
+    def _init_(self):
+>>>>>>> 36cfcad67a600aa388ed82267ab4afc8e3be9479
         self.users = {}
         self.conversations = {}
         self.data_dir = "data"
@@ -44,7 +48,12 @@ class DataManager:
             json.dump(users_data, f, ensure_ascii=False, indent=2)
 
         # Sauvegarde des conversations
+<<<<<<< HEAD
         conv_data = {cid: conv.to_dict() for cid, conv in self.conversations.items()}
+=======
+        conv_data = {cid: conv.to_dict()
+                     for cid, conv in self.conversations.items()}
+>>>>>>> 36cfcad67a600aa388ed82267ab4afc8e3be9479
         with open(os.path.join(self.data_dir, "conversations.json"), "w", encoding="utf-8") as f:
             json.dump(conv_data, f, ensure_ascii=False, indent=2)
 
@@ -56,6 +65,7 @@ class DataManager:
             json.dump(messages_data, f, ensure_ascii=False, indent=2)
 
     def load_data(self):
+<<<<<<< HEAD
         def safe_load_json(file_path):
             if os.path.exists(file_path):
                 with open(file_path, "r", encoding="utf-8") as f:
@@ -102,3 +112,48 @@ class DataManager:
         for cid, messages in msg_data.items():
             if cid in self.conversations:
                 self.conversations[cid].messages = messages
+=======
+        # Chargement des utilisateurs
+        users_file = os.path.join(self.data_dir, "users.json")
+        if os.path.exists(users_file):
+            with open(users_file, "r", encoding="utf-8") as f:
+                users_data = json.load(f)
+                for uid, data in users_data.items():
+                    user = UserProfile(uid)
+                    for key, value in data.items():
+                        if key == "conversations":
+                            continue
+                        if key in ["created_at", "updated_at"]:
+                            value = datetime.fromisoformat(value)
+                        setattr(user, key, value)
+                    self.users[uid] = user
+
+        # Chargement des conversations
+        conv_file = os.path.join(self.data_dir, "conversations.json")
+        if os.path.exists(conv_file):
+            with open(conv_file, "r", encoding="utf-8") as f:
+                conv_data = json.load(f)
+                for cid, data in conv_data.items():
+                    conv = Conversation(cid, data["user_id"])
+                    conv.created_at = datetime.fromisoformat(
+                        data["created_at"])
+                    conv.updated_at = datetime.fromisoformat(
+                        data["updated_at"])
+                    conv.status = data["status"]
+                    self.conversations[cid] = conv
+
+                    user_id = data["user_id"]
+                    if user_id in self.users:
+                        if not hasattr(self.users[user_id], 'conversations'):
+                            self.users[user_id].conversations = {}
+                        self.users[user_id].conversations[cid] = conv
+
+        # Chargement des messages
+        msg_file = os.path.join(self.data_dir, "messages.json")
+        if os.path.exists(msg_file):
+            with open(msg_file, "r", encoding="utf-8") as f:
+                msg_data = json.load(f)
+                for cid, messages in msg_data.items():
+                    if cid in self.conversations:
+                        self.conversations[cid].messages = messages
+>>>>>>> 36cfcad67a600aa388ed82267ab4afc8e3be9479
