@@ -1,30 +1,12 @@
 Assistant Virtuel pour l'Immigration Canadienne
 Description du Projet
-Ce projet est un assistant virtuel pour l'immigration canadienne, développé avec Streamlit. Il offre aux utilisateurs les fonctionnalités suivantes :
+Ce projet est un assistant virtuel pour l'immigration canadienne, développé avec Streamlit. Il permet aux utilisateurs de gérer des profils, obtenir des suggestions de visas, poser des questions sur les procédures, consulter des ressources officielles et sauvegarder l'historique des conversations.
 
-Création et gestion de profils personnalisés
-
-Suggestions de visas adaptées à leur situation
-
-Capacité à poser des questions sur les procédures d'immigration
-
-Accès à des ressources officielles
-
-Sauvegarde de l'historique des conversations
-
-L'application combine plusieurs composants clés :
-
-Une base de connaissances structurée sur l'immigration canadienne
-
-Un moteur de conversation intelligent (basé sur OpenAI GPT)
-
-Un système de persistance des données
-
-Des algorithmes de recommandation personnalisés
+L'application combine une base de connaissances structurée, un moteur de conversation intelligent (OpenAI GPT), un système de persistance des données et des algorithmes de recommandation personnalisés.
 
 Classes Principales
 1. UserProfile (models.py)
-Responsabilité : Représenter les données d'un utilisateur.
+Responsabilité : Gérer les données et l'historique des conversations d'un utilisateur.
 
 class UserProfile:
     def __init__(self, user_id, age, nationality, destination, profile_type, funds):
@@ -38,14 +20,12 @@ class UserProfile:
 
 Fonctionnalités clés :
 
-Stockage des informations démographiques (âge, nationalité, destination, type de profil, fonds).
+Stockage des informations démographiques.
 
-Gestion de l'historique des conversations.
-
-Méthodes de sérialisation pour la persistance des données.
+Gestion de l'historique des conversations et sérialisation pour la persistance.
 
 2. Conversation (models.py)
-Responsabilité : Gérer les échanges entre l'utilisateur et l'assistant.
+Responsabilité : Gérer les échanges utilisateur-assistant.
 
 from datetime import datetime
 
@@ -64,11 +44,9 @@ class Conversation:
 
 Fonctionnalités clés :
 
-Historique chronologique des messages.
+Historique chronologique des messages avec métadonnées.
 
-Métadonnées de temporisation pour chaque message.
-
-Structure uniforme des messages pour une persistance facile.
+Structure uniforme pour la persistance.
 
 3. DataManager (data_manager.py)
 Responsabilité : Assurer la persistance des données utilisateur.
@@ -90,14 +68,12 @@ class DataManager:
 
 Fonctionnalités clés :
 
-Gestion centralisée des profils utilisateur et des conversations.
+Gestion centralisée des profils et conversations.
 
-Sérialisation et désérialisation des données au format JSON.
-
-Système de génération d'ID uniques (ex: USER_20250731124500).
+Sérialisation/désérialisation JSON et système d'ID uniques.
 
 4. ImmigrationAgent (immigration_agent.py)
-Responsabilité : Contenir la logique métier liée à l'immigration.
+Responsabilité : Gérer la logique métier de l'immigration.
 
 # KNOWLEDGE_BASE serait importé ou défini ailleurs
 KNOWLEDGE_BASE = {
@@ -126,13 +102,9 @@ class ImmigrationAgent:
 
 Fonctionnalités clés :
 
-Intègre une base de connaissances complète sur les visas (critères d'éligibilité, documents requis, délais de traitement).
+Base de connaissances sur les visas et algorithmes de recommandation.
 
-Implémente des algorithmes de recommandation pour suggérer les options de visa les plus adaptées.
-
-Permet la vérification d'éligibilité basée sur le profil utilisateur.
-
-Fournit un accès aux ressources officielles.
+Vérification d'éligibilité et accès aux ressources officielles.
 
 5. ConversationEngine (conversation_engine.py)
 Responsabilité : Gérer les interactions intelligentes et générer les réponses.
@@ -194,24 +166,16 @@ class ConversationEngine:
 
 Fonctionnalités clés :
 
-Détection d'intention (ex: salutations, questions sur les documents, demandes de visa).
+Détection d'intention et extraction d'entités.
 
-Extraction d'entités (ex: types de visa, destinations spécifiques).
-
-Intégration avec OpenAI GPT pour des réponses contextuelles et intelligentes.
-
-Prise en compte du contexte personnalisé basé sur le profil utilisateur.
+Intégration OpenAI GPT et gestion du contexte personnalisé.
 
 Flux d'Exécution Principal (app.py)
 Initialisation
-Les singletons (instances de DataManager, ImmigrationAgent, ConversationEngine) sont créés et stockés dans st.session_state pour maintenir leur état à travers les rechargements de page.
-
-Les données utilisateur et les conversations existantes sont chargées au démarrage de l'application.
+Les singletons sont créés et stockés dans st.session_state, et les données existantes sont chargées.
 
 Interface Utilisateur
-Une barre latérale (Sidebar) est utilisée pour la gestion des profils (création, sélection) et l'affichage de suggestions de visas personnalisées.
-
-La zone centrale de l'application est dédiée au chat interactif, affichant l'historique des conversations et permettant à l'utilisateur de saisir de nouvelles requêtes.
+Une barre latérale gère les profils et suggestions, tandis que la zone centrale affiche le chat interactif.
 
 Gestion des Conversations
 import streamlit as st
@@ -239,76 +203,24 @@ import streamlit as st
 #     # data_manager.save_data() # Appel réel
 
 Persistance
-Les données sont sauvegardées automatiquement après chaque interaction significative (ex: envoi d'un message, mise à jour de profil).
-
-L'historique des conversations et les profils sont chargés au redémarrage de l'application, assurant une continuité pour l'utilisateur.
+Les données sont sauvegardées automatiquement après chaque interaction et chargées au redémarrage.
 
 Base de Connaissances (KNOWLEDGE_BASE)
-La base de connaissances est une structure hiérarchique qui contient toutes les informations pertinentes sur l'immigration canadienne.
+Structure hiérarchique contenant des informations sur les visas, exigences linguistiques, procédures biométriques et liens officiels.
 
-Structure typique :
+Structure typique (exemple simplifié) :
 
 {
   "visas": [
     {
       "type": "Permis d'études",
-      "description": "Permet aux citoyens étrangers d'étudier dans des établissements d'enseignement désignés au Canada.",
-      "eligibility": {
-        "fonds": "Preuve de fonds suffisants pour couvrir les frais de scolarité, de subsistance et de transport.",
-        "langue": "Niveau B2 ou équivalent dans l'une des langues officielles (français ou anglais), sauf exemption.",
-        "lettre_acceptation": "Lettre d'acceptation d'un établissement d'enseignement désigné (EED).",
-        "casier_judiciaire": "Absence de casier judiciaire."
-      },
-      "documents_requis": [
-        "Passeport valide",
-        "Lettre d'acceptation de l'EED",
-        "Preuve de fonds",
-        "Certificat d'acceptation du Québec (CAQ) si études au Québec",
-        "Résultats de test de langue (si applicable)"
-      ],
-      "processing_time": "Variable (ex: 12 semaines, selon le pays de résidence)",
-      "official_links": [
-        "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/etudier-canada/permis-etudes.html",
-        "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/etudier-canada/permis-etudes/demander.html"
-      ]
-    },
-    {
-      "type": "Permis de travail ouvert",
-      "description": "Permet de travailler pour n'importe quel employeur au Canada.",
-      "eligibility": {
-        "programme_specific": "Éligibilité via un programme spécifique (ex: PVT, époux de travailleur/étudiant)",
-        "fonds": "Preuve de fonds (selon le programme)",
-        "casier_judiciaire": "Absence de casier judiciaire."
-      },
-      "processing_time": "Variable",
-      "official_links": [
-        "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/travailler-canada/permis-travail/ouvert.html"
-      ]
-    },
-    {
-      "type": "Entrée Express",
-      "description": "Système de gestion des demandes d'immigration pour les travailleurs qualifiés.",
-      "eligibility": {
-        "crs_score": "Score suffisant au Système de Classement Global (CRS).",
-        "experience_travail": "Expérience de travail qualifiée.",
-        "langue": "Niveau de compétence linguistique élevé."
-      },
-      "processing_time": "Généralement 6 mois ou moins",
-      "official_links": [
-        "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/entree-express.html",
-        "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/entree-express/calculer-points-scg.html"
-      ]
+      "eligibility": {"fonds": "Preuve de fonds suffisants", "langue": "Niveau B2"},
+      "processing_time": "12 semaines",
+      "official_links": ["https://www.canada.ca/fr/immigration-refugies-citoyennete.html"]
     }
   ],
-  "exigences_linguistiques": {
-    "ielts": "Informations sur les scores IELTS requis.",
-    "celpip": "Informations sur les scores CELPIP requis."
-  },
-  "procedures_biometriques": "Détails sur la collecte des données biométriques.",
-  "liens_officiels": {
-    "ircc": "Lien vers le site officiel d'Immigration, Réfugiés et Citoyenneté Canada (IRCC).",
-    "calculateur_crs": "Lien vers le calculateur de score CRS."
-  }
+  "exigences_linguistiques": {"ielts": "Scores requis"},
+  "liens_officiels": {"ircc": "Site officiel"}
 }
 
 Architecture Globale
@@ -322,14 +234,4 @@ Streamlit UI (app.py)
     ├── UserProfiles
     └── Conversations
 
-Ce projet illustre une application complète combinant :
-
-Une interface utilisateur interactive et conviviale (grâce à Streamlit).
-
-Des capacités de traitement du langage naturel pour comprendre et répondre aux requêtes.
-
-Un système de recommandation personnalisé pour guider les utilisateurs.
-
-Une gestion de données persistantes pour une expérience utilisateur continue.
-
-Une intégration puissante avec l'API OpenAI pour une intelligence conversationnelle avancée.
+Ce projet combine une interface utilisateur interactive, le traitement du langage naturel, un système de recommandation, la gestion de données persistantes et l'intégration OpenAI.
